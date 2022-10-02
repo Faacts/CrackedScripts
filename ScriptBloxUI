@@ -74,7 +74,7 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 SCRIPTBLOX.Name = "SCRIPTBLOX"
 SCRIPTBLOX.Parent = ScreenGui
 SCRIPTBLOX.AnchorPoint = Vector2.new(0.5, 0.5)
-SCRIPTBLOX.BackgroundColor3 = Color3.fromRGB(39, 48, 88)
+SCRIPTBLOX.BackgroundColor3 = Color3.fromRGB(19,24,52)
 SCRIPTBLOX.Position = UDim2.new(0.5, 0, 0.5, 0)
 SCRIPTBLOX.Size = UDim2.new(0, 750, 0, 500)
 SCRIPTBLOX.Visible = false
@@ -82,9 +82,9 @@ SCRIPTBLOX.Visible = false
 FIRSTFRAME.Name = "FIRSTFRAME"
 FIRSTFRAME.Parent = SCRIPTBLOX
 FIRSTFRAME.AnchorPoint = Vector2.new(0.5, 0)
-FIRSTFRAME.BackgroundColor3 = Color3.fromRGB(22, 19, 62)
+FIRSTFRAME.BackgroundColor3 = Color3.fromRGB(39,48,88)
 FIRSTFRAME.Position = UDim2.new(0.5, 0, 0, 0)
-FIRSTFRAME.Size = UDim2.new(1, 0, 0.150000006, 0)
+FIRSTFRAME.Size = UDim2.new(1, 0, 0.145000006, 0)
 FIRSTFRAME.ZIndex = 2
 
 A_CORNER_7.Name = "A_CORNER_7"
@@ -143,7 +143,7 @@ A_CORNER_8.Parent = Frame
 
 TextButton.Parent = Frame
 TextButton.AnchorPoint = Vector2.new(0, 0.5)
-TextButton.BackgroundColor3 = Color3.fromRGB(140, 125, 255)
+TextButton.BackgroundColor3 = Color3.fromRGB(39,48,88)
 TextButton.Position = UDim2.new(0.800000012, 0, 0.5, 0)
 TextButton.Size = UDim2.new(0.174999997, 0, 0.675000012, 0)
 TextButton.AutoButtonColor = false
@@ -188,7 +188,7 @@ ScriptBloxText.TextWrapped = true
 
 SECONDFRAME.Name = "SECONDFRAME"
 SECONDFRAME.Parent = SCRIPTBLOX
-SECONDFRAME.BackgroundColor3 = Color3.fromRGB(22, 19, 62)
+SECONDFRAME.BackgroundColor3 = Color3.fromRGB(39, 48, 88)
 SECONDFRAME.Position = UDim2.new(0, 0, 0.125, 0)
 SECONDFRAME.Size = UDim2.new(0.075000003, 0, 0.875, 0)
 SECONDFRAME.ZIndex = 2
@@ -202,7 +202,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Size = UDim2.new(1, 0, 1, 0)
 TextLabel.Font = Enum.Font.Arial
 TextLabel.Text = ">"
-TextLabel.TextColor3 = Color3.fromRGB(140, 125, 255)
+TextLabel.TextColor3 = Color3.fromRGB(255,255,255)
 TextLabel.TextSize = 60.000
 TextLabel.TextWrapped = true
 
@@ -536,7 +536,7 @@ HOME.Visible = false
 Page.Name = "Page"
 Page.Parent = HOME
 Page.AnchorPoint = Vector2.new(1, 1)
-Page.BackgroundColor3 = Color3.fromRGB(140, 125, 255)
+Page.BackgroundColor3 = Color3.fromRGB(29,36,70)
 Page.Position = UDim2.new(1, -3, 1, -3)
 Page.Size = UDim2.new(0, 75, 0, 50)
 Page.ZIndex = 10
@@ -617,7 +617,7 @@ TextLabel_6.Position = UDim2.new(0.5, 0, 0.5, 0)
 TextLabel_6.Size = UDim2.new(0.600000024, 0, 0.5, 0)
 TextLabel_6.Font = Enum.Font.Unknown
 TextLabel_6.Text = "Loading"
-TextLabel_6.TextColor3 = Color3.fromRGB(140, 125, 255)
+TextLabel_6.TextColor3 = Color3.fromRGB(255,255,255)
 TextLabel_6.TextScaled = true
 TextLabel_6.TextSize = 14.000
 TextLabel_6.TextWrapped = true
@@ -629,7 +629,7 @@ TextLabel_7.BackgroundTransparency = 1.000
 TextLabel_7.Position = UDim2.new(0.5, 0, 1, 0)
 TextLabel_7.Size = UDim2.new(0, 325, 0, 50)
 TextLabel_7.Font = Enum.Font.ArialBold
-TextLabel_7.Text = "Good works on Synapce X"
+TextLabel_7.Text = "Works On Synapse X"
 TextLabel_7.TextColor3 = Color3.fromRGB(40, 173, 108)
 TextLabel_7.TextSize = 25.000
 TextLabel_7.TextWrapped = true
@@ -975,13 +975,13 @@ function CreateScriptFrame(TEXT_script, IMG_script, SCRIPT_SCRIPT, Universal)
 		local SCRIPT_Copy = Instance.new("TextButton")
 		local SCRIPT_Corner_2 = Instance.new("UICorner")
 		SCRIPT_Example.Name = "SCRIPT_Example"
-		SCRIPT_Example.BackgroundColor3 = Color3.fromRGB(189, 184, 255)
+		SCRIPT_Example.BackgroundColor3 = Color3.fromRGB(39,48,88)
 		SCRIPT_Corner_0.Name = "SCRIPT_Corner_0"
 		SCRIPT_Corner_0.Parent = SCRIPT_Example
 		SCRIPT_Image.Name = "SCRIPT_Image"
 		SCRIPT_Image.Parent = SCRIPT_Example
 		SCRIPT_Image.AnchorPoint = Vector2.new(0.5, 0)
-		SCRIPT_Image.BackgroundColor3 = Color3.fromRGB(161, 148, 255)
+		SCRIPT_Image.BackgroundColor3 = Color3.fromRGB(19,24,52)
 		SCRIPT_Image.BackgroundTransparency = 0.500
 		SCRIPT_Image.Position = UDim2.new(0.5, 0, 0.0500000007, 0)
 		SCRIPT_Image.Size = UDim2.new(0, 220, 0, 115)
@@ -1145,7 +1145,7 @@ Frame.InputBegan:Connect(function(input)
 		end)
 	end
 end)
-
+wait()
 Frame.InputChanged:Connect(function(input)
 	if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) and GuiClosed == false then
 		dragInput = input
