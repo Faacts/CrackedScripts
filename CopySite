@@ -1,0 +1,10 @@
+local req = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+
+local g = req({
+	Url = getgenv().Site,
+	Method = "GET"
+})
+
+if g.StatusCode == 200 then
+	rconsoleprint(g.Body)
+end
