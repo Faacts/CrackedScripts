@@ -70,7 +70,7 @@ local analyzers = {
     Indexes = false,
     GTSpy = false,
     SynSpy = false,
-    DisableHttpReq = true,
+    DisableHttpReq = false,
     DisableWebhookReq = true
 }
 
