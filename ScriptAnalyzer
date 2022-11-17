@@ -1,6 +1,3 @@
--- Script Analyzer [OPEN SOURCE]
--- Made by CDXX/CEO of Africa#0591
-
 if not syn then print("Exploit not supported") return end
 
 local write = function(a) rconsoleprint("@@WHITE@@") rconsoleprint(a) end
@@ -21,7 +18,7 @@ _____) | (___| |   | | |_| || |_   | |   | | | | / ___ | | |_| |___ | ____| |
                     |_|                              (____/                  
                         
                     
-Made by CDXX/CEO of Africa#0591
+Made by Facts
 
 
 ]])
