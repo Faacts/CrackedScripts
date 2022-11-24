@@ -6,5 +6,5 @@ local g = req({
 })
 
 if g.StatusCode == 200 then
-	rconsoleprint(g.Body)
+	setclipboard(g.Body)
 end
