@@ -65,7 +65,8 @@ local analyzers = {
     GTSpy = false,
     SynSpy = false,
     DisableHttpReq = false,
-    DisableWebhookReq = true
+    DisableWebhookReq = true,
+    hookfunctionBlock = true
 }
 
 addcmd({"commands", "cmds"}, function(args)
@@ -74,6 +75,7 @@ addcmd({"commands", "cmds"}, function(args)
 
  disablehttpreq - Blocks http requests. Usefull for analyzing malicious scripts without consequences.
  disablewebhook - Blocks all http requests that involve discord webhooks.
+ disablehooks - Blocks all hookfunction requests that are sent by the script.
  http - Analyze http requests made by the script. This will also log syn.requests.
  remote - Logs all remotes that are invoked/fired by the script.
  namecall - Logs all namecalls that are invoked by the script.
@@ -86,6 +88,11 @@ end)
 addcmd({"disablewebhook"}, function(args)
     if args[1] == "true" then analyzers.DisableWebhookReq = true else analyzers.DisableWebhookReq = false end
     write("Set webhook disabler to "..tostring(analyzers.DisableWebhookReq).."\n\n")
+end)
+
+addcmd({"disablehooks"}, function(args)
+    if args[1] == "true" then analyzers.hookfunctionBlock = true else analyzers.hookfunctionBlock = false end
+    write("Set hookfunction blocker to "..tostring(analyzers.hookfunctionBlock).."\n\n")
 end)
 
 addcmd({"disablehttpreq", "disablehttp"}, function(args)
@@ -220,6 +227,17 @@ end), hookfunction(Instance.new("RemoteEvent").FireServer, function(self, ...)
     if analyzers.Remotes then writew("Remote Spy - "..tostring(self:GetFullName())) write("Remote was fired with args: "..tostring((...)).."\n\n") end
     return oldfire(self, ...)
 end)
+
+local oldhook;
+oldhook = hookfunction(hookfunction, function(f,f2)
+   if Toggles.hookfunctionBlock then
+       rprint("Hookfunction Blocker", "A hookfunction attempt was made. Returning hooked argument as original function.")
+       return oldhook(f,f);
+   end
+   Previous = "Im gonna say the N word if i have to do thi shit one more time"
+   return oldhook(f,f2);
+end)
+
 
 -------------------------------------------------------
 
