@@ -66,7 +66,7 @@ local analyzers = {
     SynSpy = false,
     DisableHttpReq = false,
     DisableWebhookReq = true,
-    hookfunctionBlock = true
+    hookfunctionBlock = false
 }
 
 addcmd({"commands", "cmds"}, function(args)
