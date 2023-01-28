@@ -1,11 +1,13 @@
-for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-   if v:IsA("Texture") then
-       v:Destroy()
-   end
-end
+while true do task.wait(10)
+    for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+	if v:IsA("Texture") then
+	    v:Destroy()
+        end
+    end
 
-for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+    for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
 	if v:IsA("BasePart") then
-		v.Material = Enum.Material.SmoothPlastic
+	    v.Material = Enum.Material.SmoothPlastic
 	end
+    end
 end
