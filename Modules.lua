@@ -48,6 +48,32 @@ function module:Notify(Message, Duration)
 end
 
 function module:Credits()
+	local Window = Rayfield:CreateWindow({
+		Name = "Pearl ・ "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		LoadingTitle = "Pearl is Loading..",
+		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+		ConfigurationSaving = {
+			Enabled = true,
+			FolderName = "Pearl",
+			FileName = game.PlaceId.."-"..Player.Name
+		},
+			Discord = {
+				Enabled = true,
+				Invite = "wP6XfkXmAk",
+				RememberJoins = true
+			},
+		KeySystem = true,
+		KeySettings = {
+			Title = "Pearl",
+			Subtitle = "Authentication",
+			Note = "Key Link copied!",
+			FileName = "SiriusKey",
+			SaveKey = false,
+			GrabKeyFromSite = false,
+			Key = "Zero"
+		}
+	})
+
 	local Creditss = Window:CreateTab("Credits", 3944704135)
 	
 	local Section = Creditss:CreateSection("Credits")
