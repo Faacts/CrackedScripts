@@ -1,8 +1,8 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
-local module = {}
-local VirtualInputManager = game:GetService("VirtualInputManager")
+local modules = {}
+local VIM = game:GetService("VirtualInputManager")
 local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 local HttpService = game:GetService("HttpService")
 
@@ -16,12 +16,12 @@ task.spawn(function()
 	end)
 end)
 
-local function module:Click(v)
-	VirtualInputManager:SendMouseButtonEvent(v.AbsolutePosition.X+v.AbsoluteSize.X/2,v.AbsolutePosition.Y+50,0,true,v,1)
-	VirtualInputManager:SendMouseButtonEvent(v.AbsolutePosition.X+v.AbsoluteSize.X/2,v.AbsolutePosition.Y+50,0,false,v,1)
+local function modules:Click(v)
+	VIM:SendMouseButtonEvent(v.AbsolutePosition.X+v.AbsoluteSize.X/2,v.AbsolutePosition.Y+50,0,true,v,1)
+	VIM:SendMouseButtonEvent(v.AbsolutePosition.X+v.AbsoluteSize.X/2,v.AbsolutePosition.Y+50,0,false,v,1)
 end
 
-local function module:comma(amount)
+local function modules:comma(amount)
 	local formatted = amount
 	local k
 	while true do  
@@ -33,7 +33,7 @@ local function module:comma(amount)
 	return formatted
 end
 
-local function module:Notify(Message, Duration)
+local function modules:Notify(Message, Duration)
 	Rayfield:Notify({
 		Title = "Pearl",
 		Content = Message,
@@ -43,7 +43,7 @@ local function module:Notify(Message, Duration)
 	})
 end
 
-local function module:Credits()
+local function modules:Credits()
 	local Credits = Window:CreateTab("Credits", 3944704135)
 	
 	local Section = Credits:CreateSection("Credits")
@@ -57,6 +57,6 @@ local function module:Credits()
 	})
 end
 
-return module, Player, Rayfield
+return modules, Player, Rayfield
 
--- local module, Player, Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local modules, Player, Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules2.lua"))()
