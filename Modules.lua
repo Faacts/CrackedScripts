@@ -48,12 +48,12 @@ function module:Notify(Message, Duration)
 end
 
 function module:Credits()
-	local Credits = Window:CreateTab("Credits", 3944704135)
+	local Creditss = Window:CreateTab("Credits", 3944704135)
 	
-	local Section = Credits:CreateSection("Credits")
+	local Section = Creditss:CreateSection("Credits")
 
-	local Label = Credits:CreateLabel("Developed By Facts#3866")
-	local Button = Credits:CreateButton({
+	local Label = Creditss:CreateLabel("Developed By Facts#3866")
+	local Button = Creditss:CreateButton({
 		Name = "Join Discord Server",
 		Callback = function()
 			loadstring(game:HttpGet('https://factshub.vercel.app/Discord.lua'))();
