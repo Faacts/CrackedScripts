@@ -47,7 +47,7 @@ function module:Notify(Message, Duration)
 	})
 end
 
-local function Credits()
+function module:Credits()
 	local Credits = Window:CreateTab("Credits", 3944704135)
 	
 	local Section = Credits:CreateSection("Credits")
@@ -182,6 +182,6 @@ function module:srvhop()
     serverhop:Teleport(game.PlaceId)
 end
 
-return module, Player, Rayfield, Credits
+return module, Player, Rayfield
 
--- local module, Player, Rayfield, Credits = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local module, Player, Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
