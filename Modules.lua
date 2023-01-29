@@ -47,39 +47,13 @@ function module:Notify(Message, Duration)
 	})
 end
 
-function module:Credits()
-	local Window = Rayfield:CreateWindow({
-		Name = "Pearl ・ "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		LoadingTitle = "Pearl is Loading..",
-		LoadingSubtitle = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-		ConfigurationSaving = {
-			Enabled = true,
-			FolderName = "Pearl",
-			FileName = game.PlaceId.."-"..Player.Name
-		},
-			Discord = {
-				Enabled = true,
-				Invite = "wP6XfkXmAk",
-				RememberJoins = true
-			},
-		KeySystem = true,
-		KeySettings = {
-			Title = "Pearl",
-			Subtitle = "Authentication",
-			Note = "Key Link copied!",
-			FileName = "SiriusKey",
-			SaveKey = false,
-			GrabKeyFromSite = false,
-			Key = "Zero"
-		}
-	})
-
-	local Creditss = Window:CreateTab("Credits", 3944704135)
+local function Credits()
+	local Credits = Window:CreateTab("Credits", 3944704135)
 	
-	local Section = Creditss:CreateSection("Credits")
+	local Section = Credits:CreateSection("Credits")
 
-	local Label = Creditss:CreateLabel("Developed By Facts#3866")
-	local Button = Creditss:CreateButton({
+	local Label = Credits:CreateLabel("Developed By Facts#3866")
+	local Button = Credits:CreateButton({
 		Name = "Join Discord Server",
 		Callback = function()
 			loadstring(game:HttpGet('https://factshub.vercel.app/Discord.lua'))();
@@ -208,6 +182,6 @@ function module:srvhop()
     serverhop:Teleport(game.PlaceId)
 end
 
-return module, Player, Rayfield
+return module, Player, Rayfield, Credits
 
--- local module, Player, Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local module, Player, Rayfield, Credits = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
