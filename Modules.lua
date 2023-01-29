@@ -47,7 +47,7 @@ function module:Notify(Message, Duration)
 	})
 end
 
-function module:Credits()
+function module:Credits(Window)
 	local Creditss = Window:CreateTab("Credits", 3944704135)
 	
 	local Section = Creditss:CreateSection("Credits")
