@@ -162,7 +162,7 @@ local function CreateWindow()
 			end
 		end)
 
-		Universal:CreateSection("Grinding")
+		Universal:CreateSection("Misc")
 
 		local function ServerHop()
 			local Http = game:GetService("HttpService")
@@ -223,7 +223,7 @@ local function CreateWindow()
 			end
 		end)
 
-		local Credits = Window:CreateTab("Suggestions", 4483362458)
+		local Credits = Window:CreateTab("Credits", 3944704135)
 		
 		local Section = Credits:CreateSection("Credits")
 
