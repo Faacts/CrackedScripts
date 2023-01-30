@@ -37,11 +37,20 @@ function module:comma(amount)
 	return formatted
 end
 
-function module:Notify(Message, Duration)
+function module:chatNotif(text)
+    game.StarterGui:SetCore("ChatMakeSystemMessage", {
+        Text = "[Pearl]: "..text,
+        Color = Color3.fromRGB(255, 255, 255),
+        Font = Enum.Font.SourceSansBold,
+        FontSize = Enum.FontSize.Size24
+    })
+end
+
+function module:Notify(title, text, t)
 	Rayfield:Notify({
-		Title = "Pearl",
-		Content = Message,
-		Duration = Duration or 5,
+		Title = title,
+		Content = text,
+		Duration = t or 5,
 		Image = 4483362458,
 		Actions = {},
 	})
@@ -117,7 +126,7 @@ function module:antikick(ignoreSetting)
         local NameCallMethod = getnamecallmethod()
 
         if tostring(string.lower(NameCallMethod)) == "kick" then
-            return self:Notify("You almost got kicked! Successfully prevented.",5)
+            return self:Notify("Pearl", "You almost got kicked! Successfully prevented.", 5)
         end
         
         return OldNameCall(Self, ...)
