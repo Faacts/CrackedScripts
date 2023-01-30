@@ -10,7 +10,7 @@ local HS = game:GetService("HttpService")
 local P = game:GetService("Players")
 local TS = game:GetService("TeleportService")
 
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/UILibraries/main/RayfieldKey'))()
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/UILibraries/main/RayfieldKey'))()
 
 task.spawn(function()
 	pcall(function()
@@ -47,7 +47,7 @@ function module:chatNotif(text)
 end
 
 function module:Notify(title, text, t)
-	Rayfield:Notify({
+	Library:Notify({
 		Title = title,
 		Content = text,
 		Duration = t or 5,
@@ -380,6 +380,6 @@ function module:srvhop()
     serverhop:Teleport(game.PlaceId)
 end
 
-return module, Player, Rayfield
+return module, Player, Library
 
--- local module, Player, Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local module, Player, Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
