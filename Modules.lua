@@ -76,7 +76,7 @@ function module:touch(obj,plrPart)
         firetouchinterest(plrPart,obj,1)
     else
         local pos = plrPart.CFrame
-        self:notif("Error","Your executor doesn't support 'firetouchinterest'",5)
+        self:Notify("Error","Your executor doesn't support 'firetouchinterest'",5)
         char:PivotTo(obj.CFrame)
         task.wait()
         char:PivotTo(pos)
@@ -117,7 +117,7 @@ function module:antikick(ignoreSetting)
         local NameCallMethod = getnamecallmethod()
 
         if tostring(string.lower(NameCallMethod)) == "kick" then
-            notif("Pearl","You almost got kicked! Successfully prevented.",5)
+            Notify("Pearl","You almost got kicked! Successfully prevented.",5)
             return nil
         end
         
