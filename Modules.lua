@@ -117,7 +117,7 @@ function module:antikick(ignoreSetting)
         local NameCallMethod = getnamecallmethod()
 
         if tostring(string.lower(NameCallMethod)) == "kick" then
-            return self:Notify("Pearl","You almost got kicked! Successfully prevented.",5)
+            return self:Notify("You almost got kicked! Successfully prevented.",5)
         end
         
         return OldNameCall(Self, ...)
