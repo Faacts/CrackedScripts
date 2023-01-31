@@ -380,6 +380,6 @@ function module:srvhop()
     serverhop:Teleport(game.PlaceId)
 end
 
-return module, Player, Library
+return module, player, Library
 
--- local module, Player, Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local module, player, Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
