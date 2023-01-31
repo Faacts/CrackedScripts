@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 local module = {}
 local VIM = game:GetService("VirtualInputManager")
-local player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
+local plr = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("ReplicatedStorage")
 local HS = game:GetService("HttpService")
@@ -380,6 +380,6 @@ function module:srvhop()
     serverhop:Teleport(game.PlaceId)
 end
 
-return module, player, Library
+return module, plr, Library
 
--- local module, player, Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
+-- local module, plr, Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/Modules.lua"))()
