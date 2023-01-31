@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 local module = {}
 local VIM = game:GetService("VirtualInputManager")
-local Player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
+local player = game:GetService("Players").LocalPlayer or game:GetService("Players").PlayerAdded:Wait()
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("ReplicatedStorage")
 local HS = game:GetService("HttpService")
