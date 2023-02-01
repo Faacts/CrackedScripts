@@ -133,8 +133,7 @@ function module:antikick(ignoreSetting)
 end
 
 function module:errorHandler(func, funcname, ...)
-    local args = {...}
-    local s,e = pcall(func, args)
+    local s,e = pcall(func, ...)
     if not s then
         self:Notify((funcname and (funcname.." Error") or "Error"),e,10)
         return e
