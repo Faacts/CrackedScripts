@@ -65,7 +65,7 @@ function module:Credits(Window)
 	local Button = Creditss:CreateButton({
 		Name = "Join Discord Server",
 		Callback = function()
-			loadstring(game:HttpGet('https://factshub.vercel.app/Discord.lua'))();
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/Side/main/JoinDiscord.lua'))();
 		end,
 	})
 end
