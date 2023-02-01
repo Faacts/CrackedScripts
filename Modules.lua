@@ -135,10 +135,7 @@ end
 
 function module:errorHandler(func,funcName)
     local s,e = pcall(func)
-    if not s then
-        self:Notify((funcName and (funcName.." Error") or "Error"),e,10)
-    end
-    return e
+    return self:Notify((funcName and (funcName.." Error") or "Error"),e,10)
 end
 
 function module:formatNum(num,formatType)
