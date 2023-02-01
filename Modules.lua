@@ -132,13 +132,14 @@ function module:antikick(ignoreSetting)
     end)
 end
 
-function module:errorHandler(func,funcName)
-    local s,e = pcall(func,funcName)
+function module:errorHandler(func, funcname, ...)
+    local args = {...}
+    local s,e = pcall(func, args)
     if not s then
-        self:Notify((funcName and (funcName.." Error") or "Error"),e,10)
-        return
+        self:Notify((funcname and (funcname.." Error") or "Error"),e,10)
+        return e
     end
-    return e
+    return
 end
 
 function module:formatNum(num,formatType)
