@@ -136,9 +136,9 @@ function module:errorHandler(func,funcName)
     local s,e = pcall(func)
     if not s then
         self:Notify((funcName and (funcName.." Error") or "Error"),e,10)
-        return e
+        return
     end
-    return
+    return e
 end
 
 function module:formatNum(num,formatType)
