@@ -389,9 +389,9 @@ function module:rejoin()
     if #P:GetPlayers() <= 1 then
         plr:Kick("\nRejoining...")
         task.wait()
-        S_T:Teleport(game.PlaceId)
+        TS:Teleport(game.PlaceId)
     else
-        S_T:TeleportToPlaceInstance(game.PlaceId, game.JobId)
+        TS:TeleportToPlaceInstance(game.PlaceId, game.JobId)
     end
 end
 
