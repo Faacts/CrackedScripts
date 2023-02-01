@@ -1,3 +1,5 @@
+local module = {}
+
 function module:errorHandler(func, funcname, ...)
     local args = {...}
     local s,e = pcall(func, args)
@@ -8,3 +10,5 @@ function module:errorHandler(func, funcname, ...)
     end
     return
 end
+
+return module
