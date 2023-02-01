@@ -145,6 +145,27 @@ function module:errorHandler(func, funcname, ...)
     return
 end
 
+function module:antiafk()
+    local GC = getconnections or get_signal_cons
+    if GC then
+        for i,v in pairs(GC(plr.Idled)) do
+            if v["Disable"] then
+                v["Disable"](v)
+            elseif v["Disconnect"] then
+                v["Disconnect"](v)
+            end
+        end
+    else
+        self:chatNotif("Executor you are using is not fully supported.")
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+end
+
 function module:formatNum(num,formatType)
     local u1 = { "k", "m", "b", "t", "q" }
     local function Abbreviated(p1)
