@@ -69,6 +69,10 @@ function module:Credits(Window)
 	})
 end
 
+function module:Discord()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/Side/main/JoinDiscord.lua'))()
+end
+
 function module:getchar(player)
     player = player or plr
     return player.Character or player.CharacterAdded:Wait()
