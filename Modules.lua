@@ -52,7 +52,6 @@ function module:Notify(title, text, t)
 		Content = text,
 		Duration = t or 5,
 		Image = 12339537490,
-		Actions = {},
 	})
 end
 
