@@ -229,7 +229,7 @@ end
 
 function module:speed(Value)
     getgenv().speed = Value
-    if getgenv().speed then
+    while getgenv().speed do
         task.wait()
         self:getchar().HumanoidRootPart.CFrame = self:getchar().HumanoidRootPart.CFrame + self:getchar().HumanoidRootPart.CFrame.LookVector * 3
     end
