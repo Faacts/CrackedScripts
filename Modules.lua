@@ -228,11 +228,14 @@ function module:Credits(Window)
 end
 
 function module:speed(Value)
-    getgenv().speed = Value
-    while getgenv().speed do
-        task.wait()
-        self:getchar().HumanoidRootPart.CFrame = self:getchar().HumanoidRootPart.CFrame + self:getchar().HumanoidRootPart.CFrame.LookVector * 3
-    end
+	getgenv().speed = Value
+	while true do
+	    if getgenv().speed then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 3
+	    end
+	    task.wait()
+	end
+
 end
 
 function module:Discord()
