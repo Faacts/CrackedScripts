@@ -233,7 +233,7 @@ function module:speed(Value)
 	    if getgenv().speed then
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -1)
 	    end
-	    wait()
+	    task.wait(0.03)
 	end
 
 end
