@@ -55,6 +55,110 @@ function module:Notify(title, text, t)
 	})
 end
 
+function module:esp(Window)
+	local ESPTab = Window:CreateTab("ESP", 4370345144)
+
+	local Section = ESPTab:CreateSection("ESP")
+
+	getgenv().esp = false
+	getgenv().teamcheck = false
+	getgenv().Color = Color3.fromRGB(255,0,0)
+
+	local Toggle = ESPTab:CreateToggle({
+		Name = "ESP",
+		CurrentValue = false,
+		Flag = "ToggleESP",
+		Callback = function(Value)
+		getgenv().esp = Value
+		spawn(function()
+		while wait() do
+		    if not getgenv().esp then
+			  for i,v in pairs(game.Players:GetChildren()) do
+			      if v.Character and v.Character:FindFirstChild("Highlight") then
+				  local Highlight = v.Character:FindFirstChild("Highlight")
+				  Highlight.Enabled = false
+			  end
+		      end 
+		      else
+			  for i,v in pairs(game.Players:GetChildren()) do
+			     if getgenv().teamcheck == true then
+			       if v.Character and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
+				     if v.Character:FindFirstChild("Highlight") then
+				     local Highlight = v.Character:FindFirstChild("Highlight") 
+				     Highlight.Enabled = true
+				     Highlight.FillColor = getgenv().Color
+				     Highlight.Adornee = v.Character
+				     else
+				     local Highlight = Instance.new("Highlight",v.Character)
+				     Highlight.Enabled = true
+				     Highlight.FillColor = getgenv().Color
+				     Highlight.Adornee = v.Character
+				  end       
+			       end  
+				if v.TeamColor == game.Players.LocalPlayer.TeamColor then
+				  if v.Character and v.Character:FindFirstChild("Highlight") then
+				      local Highlight = v.Character:FindFirstChild("Highlight")
+				      Highlight.Enabled = false
+				  end    
+				end 
+			      else
+				  if v.Character and v ~= game.Players.LocalPlayer then
+				     if v.Character:FindFirstChild("Highlight") then
+				     local Highlight = v.Character:FindFirstChild("Highlight") 
+				     Highlight.Enabled = true
+				     Highlight.FillColor = getgenv().Color
+				     Highlight.Adornee = v.Character
+				     else
+				     local Highlight = Instance.new("Highlight",v.Character)
+				     Highlight.Enabled = true
+				     Highlight.FillColor = getgenv().Color
+				     Highlight.Adornee = v.Character
+				  end       
+			       end    
+			    end       
+		      end    
+		    end  
+		end    
+		end)
+		end,
+	})
+
+	local Toggle = ESPTab:CreateToggle({
+		Name = "Team Check",
+		CurrentValue = false,
+		Flag = "ToggleESP2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			getgenv().teamcheck = Value
+		end,
+	})
+
+	local Toggle = ESPTab:CreateToggle({
+		Name = "Rainbow ESP",
+		CurrentValue = false,
+		Flag = "ToggleESP3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+		getgenv().Rainbow = Value
+		while wait() do
+		    if not getgenv().Rainbow then return end
+		    getgenv().Color = Color3.new(148, 0, 211)
+		    wait()
+		    getgenv().Color = Color3.new(75, 0, 130)
+		    wait()
+		    getgenv().Color = Color3.new(0, 0, 255)
+		    wait()
+		    getgenv().Color = Color3.new(0, 255, 0)
+		    wait()
+		    getgenv().Color = Color3.new(255, 255, 0)
+		    wait()
+		    getgenv().Color = Color3.new(255, 127, 0)
+		    wait()
+		    getgenv().Color = Color3.new(255, 0 , 0)
+		    wait()
+		end   
+		end,
+	})
+end
+
 function module:Credits(Window)
 	local Creditss = Window:CreateTab("Credits", 3944704135)
 	
