@@ -56,7 +56,7 @@ function module:Notify(title, text, t)
 end
 
 function module:esp(Window)
-	local ESPTab = Window:CreateTab("ESP", 10686484311)
+	local ESPTab = Window:CreateTab("ESP", 10686484299)
 
 	local Section = ESPTab:CreateSection("ESP")
 
