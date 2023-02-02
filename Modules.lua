@@ -231,7 +231,7 @@ function module:speed(Value)
     getgenv().speed = Value
     while getgenv().speed do
 	task.wait()
-        self:getchar().HumanoidRootPart.CFrame *= CFrame.new(0,0,-.5)
+        self:getchar().HumanoidRootPart.CFrame *= CFrame.new(0,0,-.75)
     end
 end
 
