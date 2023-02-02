@@ -231,7 +231,7 @@ function module:speed(Value)
 	getgenv().speed = Value
 	while true do
 	    if getgenv().speed then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 3
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -1)
 	    end
 	    task.wait()
 	end
