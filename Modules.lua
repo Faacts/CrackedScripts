@@ -55,6 +55,10 @@ function module:Notify(title, text, t)
 	})
 end
 
+function module:copydiscord()
+    setclipboard("https://discord.gg/EwFuXZTBCP")
+end
+
 function module:plrtab(Window)
 	local PLRTab = Window:CreateTab("Player", 10686489468)
 	local Section = PLRTab:CreateSection("Main")
@@ -218,13 +222,29 @@ function module:Credits(Window)
 	local Button = Creditss:CreateButton({
 		Name = "Join Discord Server",
 		Callback = function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/Side/main/JoinDiscord.lua'))();
+			module:Discord()
 		end,
 	})
 end
 
 function module:Discord()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/Faacts/Side/main/JoinDiscord.lua'))()
+	local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+	HttpService = game:GetService("HttpService")
+	if httprequest then
+	httprequest({
+	Url = 'http://127.0.0.1:6463/rpc?v=1',
+	Method = 'POST',
+	Headers = {
+	['Content-Type'] = 'application/json',
+	Origin = 'https://discord.com'
+	},
+	Body = HttpService:JSONEncode({
+	cmd = 'INVITE_BROWSER',
+	nonce = HttpService:GenerateGUID(false),
+	args = {code = 'EwFuXZTBCP'}
+	})
+	})
+	end
 end
 
 function module:getchar(player)
