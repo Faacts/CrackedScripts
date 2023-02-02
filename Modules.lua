@@ -227,6 +227,14 @@ function module:Credits(Window)
 	})
 end
 
+function module:speed(Value)
+    getgenv().speed = Value
+    while getgenv().speed do
+        task.wait()
+        self:getchar().HumanoidRootPart.CFrame = self:getchar().HumanoidRootPart.CFrame + self:getchar().HumanoidRootPart.CFrame.LookVector * 3
+    end
+end
+
 function module:Discord()
 	local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 	HttpService = game:GetService("HttpService")
