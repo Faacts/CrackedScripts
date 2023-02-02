@@ -55,6 +55,56 @@ function module:Notify(title, text, t)
 	})
 end
 
+function module:plrtab(Window)
+	local PLRTab = Window:CreateTab("Player", 10686489468)
+	local Section = PLRTab:CreateSection("Main")
+
+	local defaultspeed = plr.Character.Humanoid.WalkSpeed
+	local Slider = PLRTab:CreateSlider({
+		Name = "Walk Speed",
+		Range = {0, 1000},
+		Increment = 1,
+		Suffix = "Speed",
+		CurrentValue = defaultspeed,
+		Flag = "Slider1",
+		Callback = function(Value)
+			plr.Character.Humanoid.WalkSpeed = Value
+		end,
+	})
+
+	local defaultjump = plr.Character.Humanoid.JumpPower
+	local Slider = PLRTab:CreateSlider({
+		Name = "Jump Power",
+		Range = {0, 1000},
+		Increment = 1,
+		Suffix = "Power",
+		CurrentValue = defaultjump,
+		Flag = "Slider2",
+		Callback = function(Value)
+			plr.Character.Humanoid.JumpPower = Value
+		end,
+	})
+
+	local Slider = PLRTab:CreateSlider({
+		Name = "Field Of View",
+		Range = {0, 120},
+		Increment = 1,
+		Suffix = "FOV",
+		CurrentValue = 70,
+		Flag = "Slider3",
+		Callback = function(Value)
+			game:GetService'Workspace'.Camera.FieldOfView = Value
+		end,
+	})
+
+	local Button = PLRTab:CreateButton({
+		Name = "Reset FOV",
+		Callback = function()
+			game:GetService'Workspace'.Camera.FieldOfView = 70
+		end,
+	})
+end
+
 function module:esp(Window)
 	local ESPTab = Window:CreateTab("ESP", 10686484299)
 
