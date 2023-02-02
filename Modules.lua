@@ -228,33 +228,30 @@ function module:Credits(Window)
 end
 
 function module:speed(Value)
-	getgenv().speed = Value
-	while true do
-	    if getgenv().speed then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -1)
-	    end
-	    task.wait(0.03)
-	end
-
+    getgenv().speed = Value
+    while getgenv().speed do
+	task.wait()
+        self:getchar().HumanoidRootPart.CFrame *= CFrame.new(0,0,-.5)
+    end
 end
 
 function module:Discord()
 	local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 	HttpService = game:GetService("HttpService")
 	if httprequest then
-	httprequest({
-	Url = 'http://127.0.0.1:6463/rpc?v=1',
-	Method = 'POST',
-	Headers = {
-	['Content-Type'] = 'application/json',
-	Origin = 'https://discord.com'
-	},
-	Body = HttpService:JSONEncode({
-	cmd = 'INVITE_BROWSER',
-	nonce = HttpService:GenerateGUID(false),
-	args = {code = 'EwFuXZTBCP'}
-	})
-	})
+		httprequest({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+			['Content-Type'] = 'application/json',
+			Origin = 'https://discord.com'
+			},
+			Body = HttpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = HttpService:GenerateGUID(false),
+				args = {code = 'EwFuXZTBCP'}
+			})
+		})
 	end
 end
 
