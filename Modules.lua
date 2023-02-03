@@ -107,6 +107,36 @@ function module:plrtab(Window)
 			game:GetService'Workspace'.Camera.FieldOfView = 70
 		end,
 	})
+
+	local Section = PLRTab:CreateSection("Misc")
+
+	local Button = PLRTab:CreateButton({
+		Name = "Anti AFK",
+		Callback = function()
+			module:antiafK()
+		end,
+	})
+
+	local Button = PLRTab:CreateButton({
+		Name = "Rejoin",
+		Callback = function()
+			module:rejoin()
+		end,
+	})
+
+    local Button = PLRTab:CreateButton({
+		Name = "Join Smallest Server",
+		Callback = function()
+			module:smallestserver()
+		end,
+	})
+
+    local Button = PLRTab:CreateButton({
+		Name = "Server Hop",
+		Callback = function()
+			module:serverhop()
+		end,
+	})
 end
 
 function module:esp(Window)
@@ -577,11 +607,11 @@ function module:rejoin()
     end
 end
 
-function module:smallestSrv()
+function module:smallestserver()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/JoinSmallestServer.lua"))()
 end
 
-function module:srvhop()
+function module:serverhop()
     local serverhop = loadstring(game:HttpGet("https://raw.githubusercontent.com/Faacts/Side/main/serverhop.lua"))()
     serverhop:Teleport(game.PlaceId)
 end
