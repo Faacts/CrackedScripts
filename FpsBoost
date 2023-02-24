@@ -1,13 +1,76 @@
-while true do task.wait(10)
-    for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-	if v:IsA("Texture") then
-	    v:Destroy()
-        end
+local Settings = {
+	Textures = true,
+	VisualEffects = true,
+	Parts = true,
+	Particles = true,
+	NoShadows = true,
+	FullBright = false,
+	Sky = false
+}
+
+local Stuff = {}
+local Lighting = game:GetService("Lighting")
+
+for _, v in next, game:GetDescendants() do
+	if Settings.Parts then
+		if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+			v.Material = Enum.Material.SmoothPlastic
+			v.Reflectance = 0
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if Settings.Particles then
+		if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+			v.Enabled = false
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if Settings.VisualEffects then
+		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+			v.Enabled = false
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if Settings.Textures then
+		if v:IsA("Decal") or v:IsA("Texture") then
+			v.Texture = ""
+			table.insert(Stuff, 1, v)
+		end
+	end
+
+	if Settings.NoShadows then
+        Lighting.GlobalShadows = false
+        Lighting.FogEnd = 9e9
+        sethiddenproperty(Lighting, "Technology", 2)
     end
 
-    for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-	if v:IsA("BasePart") then
-	    v.Material = Enum.Material.SmoothPlastic
+	if Settings.FullBright then
+		local Lighting = game:GetService("Lighting")
+		
+		Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+		Lighting.FogEnd = math.huge
+		Lighting.FogStart = math.huge
+		Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+		Lighting.Brightness = 5
+		Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+		Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+		Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+		Lighting.Outlines = true
 	end
-    end
+
+	if Settings.Sky then
+		if v:IsA("Sky") then
+			v.Parent = nil
+			table.insert(Stuff, 1, v)
+		end
+	end
+end
+
+game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+
+for i, v in next, Settings do
+	print(tostring(i)..": "..tostring(v))
 end
