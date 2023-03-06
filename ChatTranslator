@@ -1,8 +1,3 @@
---[[
-    Message Translator
-    Made by Facts
---]]
-
 if not game['Loaded'] then game['Loaded']:Wait() end; repeat wait(.06) until game:GetService('Players').LocalPlayer ~= nil
 local YourLang = "en" -- Language code that the messages are going to be translated to
 
@@ -277,18 +272,10 @@ wait()
 
 local properties = {
     Color = Color3.new(1,1,0);
-    Font = Enum.Font.SourceSansItalic;
+    Font = Enum.Font.SourceSansBold;
     TextSize = 16;
 }
-
-game:GetService("StarterGui"):SetCore("SendNotification",
-    {
-        Title = "Chat Translator",
-        Text = "Ported to Google Translate",
-        Duration = 3
-    }
-)
-                  
+ 
 properties.Text = "[TR] To send messages in a language, say > followed by the target language/language code, e.g.: >ru or >russian. To disable (go back to original language), say >d."
 StarterGui:SetCore("ChatMakeSystemMessage", properties)
 
