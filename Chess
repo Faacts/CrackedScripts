@@ -1,0 +1,229 @@
+getgenv().enabled = true
+
+-------------------------
+
+connectToWebsocket = syn.websocket.connect or Krnl.WebSocket.connect or WebSocket.connect
+
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/RobloxScripts/main/Esp%20Library/main.lua",true))()
+
+getgenv().amountOfMoves = 0
+getgenv().currentMove = ""
+getgenv().gameInProgress = false
+
+plr = game:GetService("Players").LocalPlayer
+
+letterToBoard = {
+    a = 8,
+    b = 7,
+    c = 6,
+    d = 5,
+    e = 4,
+    f = 3,
+    g = 2,
+    h = 1
+}
+
+function getPiece(tile)
+    local rayOrigin
+    
+    if tile:FindFirstChild("Tile") then
+        rayOrigin = tile.Tile.Position
+    else
+        rayOrigin = tile.Position
+    end
+    
+    local rayDirection = Vector3.new(0, 10, 0)
+    
+    local raycastResult = workspace:Raycast(rayOrigin, rayDirection)
+    
+    if raycastResult ~= nil then
+        return raycastResult.Instance.Parent
+    end
+    return nil
+end
+
+function getMove(board)
+    local websock = connectToWebsocket("ws://localhost:8080")
+    
+    currentMove = ""
+    
+    local toMove
+    if playerIsWhite() then
+        toMove = "w"
+    else
+        toMove = "b"
+    end
+    
+    local totalMoves = amountOfMoves
+    local boardState = board .. " " .. toMove .. " KQkq " .. "-" .. " 0 " .. totalMoves
+    
+    local connection = websock.OnMessage:Connect(function(move)
+       currentMove = move
+    end)
+    
+    websock:Send(boardState)
+    
+    repeat 
+        wait()
+    until currentMove ~= ""
+    
+    pcall(function()
+        websock:Close()
+    end)
+    
+    connection:Disconnect()
+    
+    return currentMove
+end
+
+function playerIsWhite()
+    if string.match(plr.PlayerGui.GameStatus.White.Info.Text, plr.DisplayName) then
+        return true
+    end
+    return false
+end
+
+function reverse(s)
+  local n = #s
+  local r = ""
+  for i = n, 1, -1 do
+    r = r .. string.sub(s, i, i)
+  end
+  return r
+end
+
+function getMesh(tile)
+    for i,v in pairs(tile:GetChildren()) do
+        if v:IsA("MeshPart") then
+            if v:FindFirstChild("ParticleAttachment") then
+                return v
+            end
+        end
+    end
+    return tile:FindFirstChildWhichIsA("MeshPart")
+end
+
+function isWhite(color3)
+    local h,s,v = color3:ToHSV()
+    if v >= 0.5 then
+        return true -- the color is white
+    else
+        return false -- the color is black
+    end
+end
+
+function getBoard()
+    local currentString = ""
+    
+    board = game:GetService("Workspace").Board
+    
+    for i=1, 8 do
+        for x=1, 8 do
+            
+            local tile = board[x .. "," .. i]
+            if tile:FindFirstChild("Tile") then
+                tile = board[x .. "," .. i].Tile
+            else
+                tile = board[x .. "," .. i]
+            end
+            
+            local piece = getPiece(tile)
+            local char
+            if piece ~= nil then
+                
+                if piece.Name == "Knight" then
+                    char = "N"
+                else
+                    char = string.sub(piece.Name, 1, 1 )
+                end
+                
+                
+                if isWhite(getMesh(piece).Color) then
+                    currentString = currentString .. char:upper()
+                else
+                    currentString = currentString .. char:lower()
+                end
+            else
+                local lastChar = string.sub(currentString, -1)
+                if tonumber(lastChar) then
+                    currentString = string.sub(currentString, 1, -2) .. tostring((tonumber(lastChar) + 1))
+                else
+                    currentString = currentString .. "1"
+                end
+            end
+                    
+        end
+        currentString = currentString .. "/"
+    end
+    
+    currentString = reverse(currentString)
+    currentString = string.sub(currentString, 2, -1)
+    
+    return currentString
+end
+
+
+function gameInProgress()
+    return #game:GetService("Workspace").Board:GetChildren() > 0
+end
+
+while task.wait() and enabled do
+    
+    if gameInProgress() == false then
+        repeat
+            print('waiting for game')
+            task.wait()
+            amountOfMoves = 0
+            wait(3)
+        until gameInProgress()
+    end
+    
+    move = getMove(getBoard())
+    
+    pieceToMoveStr = string.sub(move, 1, 2)
+    placeToMoveStr = string.sub(move, 3, 4)
+    
+    pieceToMove = board[letterToBoard[string.sub(pieceToMoveStr, 1, 1)] .."," .. string.sub(pieceToMoveStr, 2, 2)]
+    placeToMove = board[letterToBoard[string.sub(placeToMoveStr, 1, 1)] .."," .. string.sub(placeToMoveStr, 2, 2)]
+    
+    
+    ESP:addHighlight(getPiece(pieceToMove), {
+    	FillColor = Color3.new(255, 0, 0),
+    	FillTransparency = 0.5,
+    	OutlineColor = Color3.new(255, 255, 255),
+    	OutlineTransparency = 0
+    })
+    
+    ESP:addHighlight(placeToMove, {
+    	FillColor = Color3.new(255, 0, 0),
+    	FillTransparency = 0.5,
+    	OutlineColor = Color3.new(255, 255, 255),
+    	OutlineTransparency = 0
+    })
+    
+    if playerIsWhite() then
+        repeat
+            task.wait()
+        until plr.PlayerGui.GameStatus.White.Visible == false or gameInProgress() == false
+        ESP:clearEsp()
+    else
+        repeat
+            task.wait()
+        until plr.PlayerGui.GameStatus.Black.Visible == false or gameInProgress() == false
+        ESP:clearEsp()
+    end
+    
+    if playerIsWhite() then
+        repeat
+            task.wait()
+        until plr.PlayerGui.GameStatus.White.Visible == true or gameInProgress() == false
+    else
+        repeat
+            task.wait()
+        until plr.PlayerGui.GameStatus.Black.Visible == true or gameInProgress() == false
+    end
+    
+    task.wait(1)
+    
+    amountOfMoves = amountOfMoves + 1
+end
