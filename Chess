@@ -43,7 +43,7 @@ function getPiece(tile)
 end
 
 function getMove(board)
-    local websock = connectToWebsocket("ws://localhost:8080")
+    local websock = connectToWebsocket("ws://localhost:3030")
     
     currentMove = ""
     
